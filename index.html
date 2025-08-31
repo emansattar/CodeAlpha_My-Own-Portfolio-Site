@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
+  <link rel="icon" href="girlicon.jpg">
+  <link rel="stylesheet" href="portfolio1.css">
+</head>
+<body>
+  <!-- Hamburger (mobile) -->
+   <header>
+  <div class="menu-icon" id="menu-btn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <div><h2 class="logo">Portfolio</h2></div>
+  </header>
+
+  <!--<h2 class="logo">Portfolio</h2>-->
+
+  <!-- Sidebar Navbar -->
+  <nav class="navbar" id="sidebar">
+    <ul class="nav-link">
+      <li><a href="index.html" class= active>Home</a></li>
+      <li><a href="aboutme.html" >About Me</a></li>
+      <li><a href="contact.html" >Contact Us</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hamburger (mobile) 
+  <div class="menu-icon" id="menu-btn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>-->
+
+  <!-- Main Section -->
+  <div class="main-content" id="home">
+    <div class="detail fade-in">
+      <h2>HELLO,</h2>
+      <h1>I'm <span id="nameEffect">Eman Sattar</span></h1>
+
+      <p>
+        This is my official portfolio website to show all<br>
+        details and work experience in <span style="color: rgb(28, 85, 85); font-size: large;"><b>Frontend Web Development</b></span>. At the age of 20,<br>
+        I am eager to learn and explore new things. I am highly motivated and<br>
+        dedicated to expanding my knowledge and skills.
+      </p>
+      <a href="#"><img src="insta.jpg" alt="Instagram"></a>
+      <a href="#"><img src="whtsp.jpg" alt="WhatsApp"></a>
+      <a href="#"><img src="fb.jpg" alt="Facebook"></a>
+    </div>
+
+    <div class="images fade-in">
+      <img src="wmniconre3.png" class="girl" alt="Profile Image">
+    </div>
+  </div>
+
+  <!-- Scroll to top button -->
+  <button id="scrollTopBtn">↑</button>
+
+  <script>
+    // Typing + glowing effect on name
+const nameEl = document.getElementById("nameEffect");
+const nameText = "Eman Sattar";
+let i = 0;
+
+function typeWriter() {
+  if (i < nameText.length) {
+    nameEl.innerHTML += nameText.charAt(i);
+    i++;
+    setTimeout(typeWriter, 150);
+  } else {
+    // After typing finishes, add glow animation
+    nameEl.classList.add("glow");
+  }
+}
+
+// Clear text first and start typing
+nameEl.innerHTML = "";
+typeWriter();
+
+// Sidebar toggle
+const menuBtn = document.getElementById("menu-btn");
+const sidebar = document.getElementById("sidebar");
+
+menuBtn.addEventListener("click", () => {
+  sidebar.classList.toggle("active");
+});
+
+// Handle nav links (for separate pages)
+document.querySelectorAll(".nav-link a").forEach(link => {
+  link.addEventListener("click", () => {
+    // just close menu on mobile, no preventDefault
+    sidebar.classList.remove("active");
+  });
+});
+
+
+// Highlight active link on scroll
+window.addEventListener("scroll", () => {
+  let current = "";
+  document.querySelectorAll("section, .main-content").forEach(section => {
+    const sectionTop = section.offsetTop - 100;
+    if (pageYOffset >= sectionTop) {
+      current = section.getAttribute("id");
+    }
+  });
+
+  document.querySelectorAll(".nav-link").forEach(link => {
+    link.classList.remove("active");
+    if (link.getAttribute("href") === "#" + current) {
+      link.classList.add("active");
+    }
+  });
+});
+
+// Scroll-to-top button
+const scrollBtn = document.getElementById("scrollTopBtn");
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    scrollBtn.style.display = "block";
+  } else {
+    scrollBtn.style.display = "none";
+  }
+});
+
+scrollBtn.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+// Fade-in effect on scroll
+const faders = document.querySelectorAll(".fade-in");
+
+const appearOptions = {
+  threshold: 0.2,
+  rootMargin: "0px 0px -50px 0px"
+};
+
+const appearOnScroll = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    entry.target.classList.add("visible");
+    observer.unobserve(entry.target);
+  });
+}, appearOptions);
+
+faders.forEach(fader => {
+  appearOnScroll.observe(fader);
+});
+
+  </script>
+</body>
+</html>

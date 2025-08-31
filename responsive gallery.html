@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <link rel="icon" href="girlicon.jpg">
+    <link rel="stylesheet" href="gallery.css">
+</head>
+<body>
+    <div class="div">
+     <div class="imgcontainer">
+        <h1>Image <span>Gallery</span></h1><br>
+    <a href="webim1.jpg"target="_self"><img src="webim1.jpg" data-caption="Beauty of ocean" alt=""></a>
+    <a href="webim2.jpg"target="_self"><img src="webim2.jpg" data-caption="The sunset" alt=""></a>
+    <a href="webim3.jpg"target="_self"><img src="webim3.jpg" data-caption="The darkness" alt=""></a>
+    <a href="webim4.jpg"target="_self"><img src="webim4.jpg" data-caption="Colorful mountains" alt=""></a>
+    <br>
+    <a href="webim5.jpg"target="_blank"><img src="webim5.jpg" data-caption="The glaxy admire" alt=""></a>
+    <a href="webim6.jpg"target="_blank"><img src="webim6.jpg" data-caption="floral nature" alt=""></a>
+    <a href="webim7.jpg"target="_blank"><img src="webim7.jpg" data-caption="The moon lighting" alt=""></a>
+    <a href="webim8.jpg"target="_blank"><img src="webim8.jpg" data-caption="A redish evening" alt=""></a>
+    <br>
+    <a href="webim9.jpg"target="_blank"><img src="webim9.jpg" data-caption="The flowing nature" alt=""></a>
+    <a href="webim10.jpg"target="_blank"><img src="webim10.jpg" data-caption="trees" alt=""></a>
+    <a href="webim11.jpg"target="_blank"><img src="webim11.jpg" data-caption="silent roads" alt=""></a>
+    <a href="webim12.jpg"target="_blank"><img src="webim12.jpg" data-caption="Blue Sea" alt=""></a>
+    <br>
+    <a href="webim13.jpg"target="_blank"><img src="webim13.jpg" data-caption="Buildings" alt=""></a>
+    <a href="webim14.jpg"target="_blank"><img src="webim14.jpg" data-caption="Scene of admiration" alt=""></a>
+    <a href="webim15.jpg"target="_blank"><img src="webim15.jpg" data-caption="The whitw architecture" alt=""></a>
+    <a href="webim16.jpg"target="_blank"><img src="webim16.jpg" data-caption="Historical place" alt=""></a>
+    <br>
+    <a href="webim17.jpg"target="_blank"><img src="webim17.jpg" data-caption="Inside the World" alt=""></a>
+    <a href="webim18.jpg"target="_blank"><img src="webim18.jpg" data-caption="Flowing smoke" alt=""></a>
+    <a href="webim19.jpg"target="_blank"><img src="webim19.jpg" data-caption="Mysterious human" alt=""></a>
+    <a href="webim20.jpg"target="_blank"><img src="webim20.jpg" data-caption="Melting Swan" alt=""></a>
+    <br>
+    <a href="webim21.jpg"target="_blank"><img src="webim21.jpg" data-caption="Street food" alt=""></a>
+    <a href="webim22.jpg"target="_blank"><img src="webim22.jpg" data-caption="Fast food" alt=""></a>
+    <a href="webim23.jpg"target="_blank"><img src="webim23.jpg" data-caption="Chowmein" alt=""></a>
+    <a href="webim24.jpg"target="_blank"><img src="webim24.jpg" data-caption="Pizza" alt=""></a>
+    </div>
+</div>
+<script>
+  // Create lightbox elements
+  const images = document.querySelectorAll(".imgcontainer img");
+  let currentIndex = 0;
+
+  const lightbox = document.createElement("div");
+  lightbox.id = "lightbox";
+  document.body.appendChild(lightbox);
+
+  lightbox.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1000;
+    padding: 20px;
+    box-sizing: border-box;
+    color: #fff;
+    text-align: center;
+  `;
+
+  const lightboxImg = document.createElement("img");
+  lightboxImg.style.maxWidth = "90%";
+  lightboxImg.style.maxHeight = "70vh";
+  lightboxImg.style.border = "4px solid white";
+  lightboxImg.style.borderRadius = "8px";
+
+  const caption = document.createElement("p");
+  caption.style.marginTop = "15px";
+  caption.style.fontSize = "18px";
+
+  const downloadBtn = document.createElement("a");
+  downloadBtn.textContent = "Download";
+  downloadBtn.setAttribute("download", "");
+  downloadBtn.style.cssText = `
+    margin-top: 10px;
+    color: #00f0ff;
+    text-decoration: underline;
+    display: inline-block;
+    font-size: 16px;
+  `;
+
+  const navContainer = document.createElement("div");
+  navContainer.style.marginTop = "20px";
+
+  const prevBtn = document.createElement("button");
+  const nextBtn = document.createElement("button");
+  const closeBtn = document.createElement("button");
+
+  prevBtn.textContent = "◀ Prev";
+  nextBtn.textContent = "Next ▶";
+  closeBtn.textContent = "✖ Close";
+
+  [prevBtn, nextBtn, closeBtn].forEach(btn => {
+    btn.style.cssText = `
+      margin: 5px;
+      padding: 10px 20px;
+      background: #444;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    `;
+  });
+
+  prevBtn.onclick = () => showImage(currentIndex - 1);
+  nextBtn.onclick = () => showImage(currentIndex + 1);
+  closeBtn.onclick = () => lightbox.style.display = "none";
+
+  navContainer.append(prevBtn, nextBtn, closeBtn);
+  lightbox.append(lightboxImg, caption, downloadBtn, navContainer);
+
+  function showImage(index) {
+    if (index < 0) index = images.length - 1;
+    if (index >= images.length) index = 0;
+    const img = images[index];
+    const src = img.getAttribute("src");
+    const alt = img.getAttribute("alt") || "No description";
+    lightboxImg.src = src;
+    caption.textContent = alt;
+    downloadBtn.href = src;
+    currentIndex = index;
+    lightbox.style.display = "flex";
+  }
+
+  images.forEach((img, index) => {
+    img.title = img.alt || "";
+    img.style.cursor = "pointer";
+    img.addEventListener("click", (e) => {
+      e.preventDefault();
+      showImage(index);
+    });
+  });
+
+// CREATE SEARCH CONTAINER
+const searchContainer = document.createElement("div");
+searchContainer.style.cssText = `
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: grey; /* light grey or change as needed */
+  padding: 8px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+`;
+
+// CREATE SEARCH INPUT
+const searchInput = document.createElement("input");
+searchInput.type = "text";
+searchInput.placeholder = "🔍 Search images...";
+searchInput.style.cssText = `
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  width: 300px;
+  max-width: 90%;
+  font-size: 16px;
+  color: #333;
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(145deg, #ffffff, #e8e8e8);
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+  transition: all 0.3s ease;
+  background-color: white;
+`;
+
+// FOCUS EFFECT
+searchInput.addEventListener("focus", function () {
+  searchInput.style.outline = "none";
+  searchInput.style.boxShadow = "0 0 0 3px #007BFF55";
+  searchInput.style.transform = "scale(1.03)";
+});
+searchInput.addEventListener("blur", function () {
+  searchInput.style.transform = "scale(1)";
+});
+
+// INSERT INTO DOM
+searchContainer.appendChild(searchInput);
+document.body.insertBefore(searchContainer, document.querySelector(".div"));
+// SEARCH FILTER FUNCTION (FIXED)
+searchInput.addEventListener("input", function () {
+  const query = this.value.toLowerCase();
+  const wrappers = document.querySelectorAll(".image-wrapper");
+
+  wrappers.forEach(wrapper => {
+    const captionEl = wrapper.querySelector(".image-caption");
+    const captionText = captionEl?.textContent.toLowerCase() || "";
+    
+    wrapper.style.display = captionText.includes(query) ? "inline-block" : "none";
+  });
+});
+
+
+
+  // Close lightbox on Escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") lightbox.style.display = "none";
+    if (e.key === "ArrowRight") showImage(currentIndex + 1);
+    if (e.key === "ArrowLeft") showImage(currentIndex - 1);
+  });
+  // Get all images in the gallery
+  const galleryImages = document.querySelectorAll('.imgcontainer img');
+
+  galleryImages.forEach(img => {
+    const captionText = img.getAttribute('data-caption') || '';
+    if (!captionText) return; // Skip images without alt text
+
+    // Create a wrapper div
+    const wrapper = document.createElement('div');
+    wrapper.classList.add('image-wrapper');
+
+    // Create caption
+    const caption = document.createElement('div');
+    caption.classList.add('image-caption');
+    caption.textContent = captionText;
+
+    // Insert the wrapper before the image and move the image inside
+    img.parentElement.insertBefore(wrapper, img);
+    wrapper.appendChild(img);
+    wrapper.appendChild(caption);
+  });
+
+</script>
+
+</body>
+</html>

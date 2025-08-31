@@ -1,0 +1,259 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  background: #1d1d22;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Logo */
+.logo {
+  font-weight: bold;
+  font-style: italic;
+  color: rgb(46, 124, 124);
+  height: 60px;
+  width: 70%;
+  margin-left: 200px;
+  padding: 20px;
+  padding-left: 90px;
+}
+
+/* Sidebar Navbar (desktop) */
+.navbar {
+  height: 100%;
+  width: 20%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(27, 112, 112, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.4s ease;
+}
+
+.navbar ul {
+  width: 170px;
+  height: 500px;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar ul li {
+  list-style-type: none;
+  border-bottom: 1px solid #59c4ab;
+}
+
+.navbar ul li a {
+  display: block;
+  text-decoration: none;
+  color: rgb(11, 12, 12);
+  padding: 15px;
+  font-weight: bold;
+}
+
+.navbar ul li a:hover {
+  background-color: aliceblue;
+  border-radius: 5px;
+}
+
+/* Hamburger Button (hidden on desktop) */
+.menu-icon {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 2000;
+}
+
+.menu-icon span {
+  height: 3px;
+  width: 25px;
+  background: white;
+  margin: 4px;
+  border-radius: 2px;
+}
+
+/* Main content: text + image */
+.main-content {
+  margin-left: 25%;
+  margin-top: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 20px;
+}
+
+.detail {
+  flex: 1;
+}
+
+.detail h1 {
+  font-size: 50px;
+  color: #d8dac4;
+  margin-bottom: 20px;
+}
+
+.detail h2 {
+  font-size: 30px;
+  color: #efdcdc;
+  margin-bottom: 10px;
+}
+
+span {
+  color: rgb(46, 124, 124);
+}
+
+.detail p {
+  color: #f5efef;
+  line-height: 22px;
+}
+
+.detail a img {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  margin: 15px 8px;
+  transition: 0.3s;
+}
+
+.detail a img:hover {
+  transform: scale(1.2);
+}
+
+/* Image section */
+.images {
+  flex: 1;
+  max-width: 400px;
+}
+
+.images img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(5px 5px 10px #ebe4e4);
+}
+/* Active nav link */
+.navbar ul li a.active {
+  background: #fff;
+  color: #1b7070;
+  border-radius: 5px;
+}
+
+/* Scroll-to-top button */
+#scrollTopBtn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  display: none;
+  background: #2e7c7c;
+  color: white;
+  border: none;
+  padding: 12px 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  z-index: 2000;
+  transition: 0.3s;
+}
+
+#scrollTopBtn:hover {
+  background: #1b5d5d;
+}
+
+/* Fade-in animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Header container */
+.header {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2000;
+  background: #1d1d22; /* Match background */
+}
+
+/* Reset logo margin on mobile */
+@media (max-width: 900px) {
+  .logo {
+    margin-left: 10px;
+    padding-left: 10;
+    font-size: 25px;
+    color: rgb(46, 124, 124);
+    font-weight: bold;
+  }
+}
+
+
+
+/* Responsive Sidebar */
+@media (max-width: 900px) {
+  /*body{
+    overflow: hidden;
+  }
+  /*.logo {
+    right: 300px;
+    position: relative;*
+    left: 0px;
+    top: 15px;
+    font-size: 25px;
+    color: rgb(46, 124, 124);*
+  }
+  /* Sidebar becomes hidden */
+  .navbar {
+    width: 220px;
+    transform: translateX(-100%);
+    position: fixed;
+    z-index: 1500;
+  }
+
+  .navbar.active {
+    transform: translateX(0);
+  }
+
+  /* Show hamburger */
+  .menu-icon {
+    display: flex;
+  }
+
+  /* Content stacks vertically */
+  .main-content {
+    margin-left: 0;
+    margin-top: 25px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .detail {
+    order: 0;
+    margin: 0 auto;
+  }
+
+  .images {
+    order: -1;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 300px;
+  }
+}

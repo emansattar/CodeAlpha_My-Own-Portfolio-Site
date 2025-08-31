@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us</title>
+  <link rel="stylesheet" href="portfolio3.css">
+</head>
+<body>
+
+  <!-- Hamburger -->
+  <div class="menu-icon" id="menu-btn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- Sidebar Navigation -->
+  <nav>
+  <h2 class="logo">Portfolio</h2>
+
+  <!-- Hamburger (mobile) -->
+  <div class="menu-icon" id="menu-btn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- Navigation links -->
+  <ul class="nav-link" id="nav-links">
+    <li><a href="index.html" >Home</a></li>
+    <li><a href="aboutme.html">About</a></li>
+    <li><a href="contact.html" class="active" >Contact</a></li>
+  </ul>
+</nav>
+
+
+  <!-- Contact Content -->
+  <div class="container">
+    <div class="contact-info">
+      <h3>&#127963; <span>Address</span></h3>
+      <p>Street#4 chak 66 JB Dhandra<br>Near International Airport Faisalabad</p>
+
+      <h3>&#128382; <span>Phone</span></h3>
+      <p>0319-6278767</p>
+
+      <h3>&#128231; <span>Email</span></h3>
+      <p>emanstr22@gmail.com</p>
+    </div>
+
+    <div class="form-container">
+      <form action="">
+        <h1>Send Us a Message</h1>
+        <input type="text" name="name" placeholder="Enter your Name">
+        <input type="email" name="email" placeholder="Enter Email">
+        <textarea name="msg" placeholder="Type Your Message"></textarea>
+        <input type="submit" value="Send">
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const menuBtn = document.getElementById("menu-btn");
+const navLinks = document.getElementById("nav-links");
+
+menuBtn.addEventListener("click", () => {
+  navLinks.classList.toggle("show");
+  /*menuBtn.classList.toggle("open");*/
+
+    });
+  </script>
+</body>
+</html>

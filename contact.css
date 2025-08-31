@@ -1,0 +1,189 @@
+/* ===== Reset ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #101012, #1d1d22);
+  color: #fff;
+}
+
+/* ===== Navbar ===== */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+  background: rgba(16,16,18,0.9);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: 0.4s;
+}
+
+nav h2.logo {
+  font-size: 24px;
+  color: rgb(38, 185, 193);
+  font-style: italic;
+}
+
+/* Nav links - horizontal on desktop */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #e0f7f7;
+  font-weight: bold;
+  padding: 8px 15px;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+  background: rgb(38, 185, 193);
+  color: #101012;
+}
+
+/* Hamburger */
+.menu-icon {
+  display: none; /* only visible on smaller screens */
+  flex-direction: column;
+  cursor: pointer;
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 1100;
+}
+
+.menu-icon span {
+  height: 3px;
+  width: 30px;
+  background: #fff;
+  margin: 5px 0;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/*.menu-icon.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.menu-icon.open span:nth-child(2) {
+  opacity: 0;
+}
+.menu-icon.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ===== Container ===== */
+.container {
+  display: flex;
+  justify-content: space-around;
+  padding: 100px 20px 20px 20px;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* ===== Contact Info ===== */
+.contact-info {
+  background: rgba(16,16,18,0.85);
+  padding: 20px;
+  border-radius: 15px;
+  flex: 1;
+  min-width: 280px;
+}
+
+.contact-info h3 {
+  color: rgb(38, 185, 193);
+  margin-bottom: 10px;
+}
+
+.contact-info span {
+  color: #fff;
+}
+
+.contact-info p {
+  margin-bottom: 20px;
+}
+
+/* ===== Form ===== */
+.form-container {
+  background: rgba(38,185,193,0.2);
+  padding: 20px;
+  border-radius: 15px;
+  flex: 1;
+  min-width: 280px;
+}
+
+.form-container h1 {
+  margin-bottom: 15px;
+  text-align: center;
+  color: #fff;
+}
+
+.form-container input,
+.form-container textarea {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+}
+
+.form-container input[type="submit"] {
+  background: rgb(38, 185, 193);
+  color: #101012;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.form-container input[type="submit"]:hover {
+  background: #fff;
+  color: rgb(38, 185, 193);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+  /* Show hamburger */
+  .menu-icon {
+    display: flex;
+  }
+
+  /* Stack nav links vertically, hidden by default */
+  nav ul {
+    position: fixed;
+    top: 0;
+    left: -260px;
+    height: 100%;
+    width: 220px;
+    background: rgba(16,16,18,0.95);
+    flex-direction: column;
+    padding-top: 70px;
+    transition: left 0.4s ease;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.5);
+  }
+
+  nav ul.show {
+    left: 0; /* slide in */
+  }
+
+  nav ul li {
+    margin: 20px 0;
+  }
+
+  .container {
+    padding-top: 120px;
+    flex-direction: column;
+    align-items: center;
+  }
+}
